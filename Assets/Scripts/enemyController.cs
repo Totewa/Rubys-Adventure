@@ -52,6 +52,19 @@ public class enemyController : MonoBehaviour
         }
 
         rigidbody2D.MovePosition(position);
+
+        //remember ! inverse the test, so if broken is true !broken will be false and return won’t be executed.
+        if (!broken)
+        {
+            return;
+        }
+
+        //Public because we want to call it from elsewhere like the projectile script
+        public void Fix()
+        {
+            broken = false;
+            rigidbody2D.simulated = false;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
